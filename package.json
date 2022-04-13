@@ -1,0 +1,25 @@
+{
+  "name": "f2shop",
+  "version": "1.0.0",
+  "description": "Shop application for our brand F2, design with ReactJs, NodeJs, MongoDB...",
+  "main": "index.js",
+  "dependencies": {
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "react": "^18.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelipeBach/F2Shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FelipeBach/F2Shop/issues"
+  },
+  "homepage": "https://github.com/FelipeBach/F2Shop#readme"
+}
