@@ -2,6 +2,10 @@ import React, { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useReducer } from "react";
 import logger from "use-reducer-logger";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Product from '../components/Product';
+import { Helmet } from 'react-helmet-async';
 
 
 const reducer = (state, action) => {
@@ -41,31 +45,23 @@ function HomeScreen() {
     }, []);
     return (
         <div>
-            <div className='row center'>
+            <Helmet>
+                <title>F2 Shop</title>
+            </Helmet>
+            <div className='products'>
                 {loading ? (<div>Loading...</div>
                 )
                 :error ? (<div>{error}</div>
                 )
                 :(
-                    products.map((product) => (
-                    <div className="card" key={product.slug}>
-                        <Link to={`/product/${product.slug}`}>
-                            <img
-                                className='medium'
-                                src={product.image}
-                                alt={product.name}>
-                            </img>
-                        </Link>
-                        <div className="card body">
-                            <Link to={`/product/${product.slug}`}>
-                                <h2>{product.name}</h2>
-                            </Link>
-                        </div>
-                        <div className="price">R${product.price}</div>
-                        <button>Adicionar ao carrinho</button>
-                    </div>)
-                ))
-                }
+                    <Row>
+                    {products.map((product) => (
+                        <Col key={products.slug} sm={6} md={4} lg={3} className='mb-3'>                        
+                            <Product product={product}></Product>
+                        </Col>
+                    ))}
+                    </Row>                                           
+                )}
 
             </div>
         </div>

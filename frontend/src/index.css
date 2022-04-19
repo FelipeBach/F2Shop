@@ -29,10 +29,12 @@ body{
     height: 100%;
 }
 
-header{
-    grid-area: header;
+/* NAVBAR */
+
+.nav-color{
     background-color: #FFD800;
 }
+
 
 main{
     grid-area: main;
@@ -89,12 +91,37 @@ img.medium{
     width: 100%;
 }
 
+.img-large{   
+    width: 100%;
+}
+
 /* CARD */
 .card{
     border: 0.1rem #FFD800 solid;
     background-color: #F8F8F8;
     border-radius: 0.5rem;
     margin: 1rem;
+    display: flex;
+}
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+.product{
+    border: 1px #404040 solid;
+    margin: 1rem;
+}
+
+.product img{
+    width: 100%;
+    max-width: 29rem;
+}
+
+.product-info{
+    padding: 1rem;
 }
 
 .card-body{
