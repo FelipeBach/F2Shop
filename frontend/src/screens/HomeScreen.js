@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 
 const reducer = (state, action) => {
@@ -37,9 +39,7 @@ function HomeScreen() {
                 dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
             } catch (err) {
                 dispatch({ type: 'FETCH_FAIL', payload: err.message });
-            }
-
-            //setProducts(result.data);
+            }            
         };
         fetchData();
     }, []);
@@ -49,9 +49,10 @@ function HomeScreen() {
                 <title>F2 Shop</title>
             </Helmet>
             <div className='products'>
-                {loading ? (<div>Loading...</div>
+                {loading ? (<LoadingBox/>
                 )
-                :error ? (<div>{error}</div>
+                :error ? (
+                    <MessageBox variant="danger">{error}</MessageBox>
                 )
                 :(
                     <Row>

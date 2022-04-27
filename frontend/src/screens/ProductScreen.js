@@ -8,6 +8,11 @@ import ListGroup from "react-bootstrap/esm/ListGroup";
 import Badge from "react-bootstrap/esm/Badge";
 import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 import { Helmet } from "react-helmet-async";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import Button from 'react-bootstrap/Button';
+import { useContext } from 'react';
+import { Store } from "../Store";
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -45,10 +50,20 @@ function ProductScreen(){
         };
         fetchData();
     }, [slug]);
+
+    const {state, dispatch: ctxDispacth} = useContext(Store)
+    const addToCartHandler = () => {
+        ctxDispacth({
+            type: 'CART_ADD_ITEM',
+            payload: {...product, quantity: 1},
+        })
+    }
+
     return loading ? (
-        <div>Loading...</div>
+        <LoadingBox/>
     )
-    :error ? (<div>{error}</div>
+    :error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
     )
     :( 
         <div>
@@ -89,6 +104,14 @@ function ProductScreen(){
                                     </Col>       
                                 </Row>
                             </ListGroupItem>
+
+                            {product.countInStock > 0 && (
+                                <ListGroup.Item>
+                                    <div className="d-grid">
+                                        <Button onClick={addToCartHandler} variant='primary'>Adicionar ao Carrinho</Button>
+                                    </div>
+                                </ListGroup.Item>
+                            )}
                         </ListGroup>
                         </Card.Body>
                     </Card>
